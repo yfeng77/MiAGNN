@@ -6,13 +6,3 @@ __pycache__/
 output_testloss*/
 dataset/
 output*/
-*.pt
-*.pth
-__pycache__/
-.ipynb_checkpoints/
-dataset/
-output*/
-*.pt
-*.pth
-__pycache__/
-.ipynb_checkpoints/
