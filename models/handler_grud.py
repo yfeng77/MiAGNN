@@ -14,8 +14,6 @@ import torch.nn as nn
 import torch.utils.data as torch_data
 import torch.nn.functional as F
 from numpy import savetxt
-
-from sklearn.impute import KNNImputer
 from data_loader.forecast_dataloader_grud import (
     ForecastDataset,
     de_normalized,
@@ -23,7 +21,6 @@ from data_loader.forecast_dataloader_grud import (
     de_normalized_batch,
 )
 from models.MiAGNN import Model
-from models.MiAGNN import AutomaticWeightedLoss  
 from utils.math_utils import evaluate
 
 
