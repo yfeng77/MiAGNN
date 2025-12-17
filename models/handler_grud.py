@@ -319,10 +319,10 @@ def train(train_data, valid_data, args, result_file: str):
             norm_statistic=normalize_statistic,
         )
         train_loader = torch_data.DataLoader(
-            train_set, batch_size=args.batch_size, drop_last=True, shuffle=False, num_workers=0
+            train_set, batch_size=args.batch_size, drop_last=True, shuffle=False, num_workers=4
         )
         valid_loader = torch_data.DataLoader(
-            valid_set, batch_size=args.batch_size, drop_last=True, shuffle=False, num_workers=0
+            valid_set, batch_size=args.batch_size, drop_last=True, shuffle=False, num_workers=4
         )
     else:
         train_loader = train_data
@@ -397,7 +397,7 @@ def train(train_data, valid_data, args, result_file: str):
             forecast, logits = model(inputs, x_mean, lastx, index)
 
             # Two‑part loss: regression + (weighted) classification
-            loss = forecast_loss(forecast, target) + args.missing_rate * F.cross_entropy(logits, ctarget)
+            loss = (1 - args.missing_rate) * forecast_loss(forecast, target) + args.missing_rate * F.cross_entropy(logits, ctarget)
 
             cnt += 1
             loss.backward()
